@@ -1,0 +1,74 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple JSP Calculator</title>
+</head>
+<body>
+    <h2>Simple Calculator</h2>
+    <form method="post" action="calculator.jsp">
+        <label>Enter First Number:</label>
+        <input type="text" name="num1" required><br><br>
+
+        <label>Enter Second Number:</label>
+        <input type="text" name="num2" required><br><br>
+
+        <label>Select Operation:</label>
+        <select name="operation">
+            <option value="add">Addition (+)</option>
+            <option value="sub">Subtraction (-)</option>
+            <option value="mul">Multiplication (*)</option>
+            <option value="div">Division (/)</option>
+        </select><br><br>
+
+        <input type="submit" value="Calculate">
+    </form>
+
+<%
+    String num1Str = request.getParameter("num1");
+    String num2Str = request.getParameter("num2");
+    String operation = request.getParameter("operation");
+
+    if (num1Str != null && num2Str != null && operation != null) {
+        try {
+            double num1 = Double.parseDouble(num1Str);
+            double num2 = Double.parseDouble(num2Str);
+            double result = 0;
+            String opSymbol = "";
+
+            switch (operation) {
+                case "add":
+                    result = num1 + num2;
+                    opSymbol = "+";
+                    break;
+                case "sub":
+                    result = num1 - num2;
+                    opSymbol = "-";
+                    break;
+                case "mul":
+                    result = num1 * num2;
+                    opSymbol = "*";
+                    break;
+                case "div":
+                    if (num2 != 0) {
+                        result = num1 / num2;
+                        opSymbol = "/";
+                    } else {
+                        out.println("<p style='color:red;'>Error: Division by zero is not allowed.</p>");
+                        return;
+                    }
+                    break;
+                default:
+                    out.println("<p style='color:red;'>Invalid operation selected.</p>");
+                    return;
+            }
+
+            out.println("<h3>Result: " + num1 + " " + opSymbol + " " + num2 + " = " + result + "</h3>");
+        } catch (NumberFormatException e) {
+            out.println("<p style='color:red;'>Error: Please enter valid numeric values.</p>");
+        }
+    }
+%>
+
+</body>
+</html>
