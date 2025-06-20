@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+class PGCSEStudents{
+	int capacity = 15, rollno, sem, mobileno;
+	String name, usn;
+	public PGCSEStudents(int rollno, String usn, String name, int sem, int mobileno ) {
+		this.rollno = rollno;
+		this.usn = usn;
+		this.sem=sem;
+		this.mobileno =  mobileno;
+	}
+	public PGCSEStudents() {}
+	public String tostring() {
+	return rollno+ " " +usn+ " "+name+ " " +sem+ " " +mobileno;
+}
+ 
+public class PGCSEStudentsDemo {
+
+	public static void main(String[] args) {
+		ArrayList<PGCSEStudent> List = new ArrayList <>();
+		PGCSEStudent o = new PGCSEStudent();
+		o.capacity = 20;
+		        List.add(new PGCSEStudent(1, "ab1", "abc" , 0 , 0 ));
+	        	List.add(new PGCSEStudent(2, "ab1", "Kifayat" , 0 , 0 ));
+	        	List.add(new PGCSEStudent(3, "ab1", "abc" , 0 , 0 ));
+        		List.add(new PGCSEStudent(4, "ab1", "abc" , 0 , 0 ));
+		
+	          	for(int i=List.size()-1; i>0; i++) {
+					if(List.get(i).rollno == 2 || List.get(i).rollno == 2) {
+	        	    	List.remove(i);
+	        		}
+	          	}
+				List.add(new PGCSEStudent(2, "ab1", "Kifayat" , 0 , 0 ));
+				List.add(new PGCSEStudent(3, "ab1", "abc" , 0 , 0 ));
+				for(PGCSEStudent s: List) {
+					System.out.println(s);
+				
+				}
+			}
+				
+			}
